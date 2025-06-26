@@ -81,12 +81,14 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
         while ($row = mysqli_fetch_assoc(result: $result)) {
           $boxColor = $colors[$index % count(value: $colors)];
           $index++;
-          ?>
+        ?>
           <div class="col-lg-4 col-md-6 col-12 mb-4">
-            <a id=<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
+            <a id="<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
               <div class="job-card p-3" style="background-color: #ffffff; border-radius: 12px;">
-                <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
-                <h5 class="fw-semibold mx-1 mt-2"><?php echo $row['jobTitle']; ?></h5>
+                <div class="d-flex justify-content-start mb-2">
+                  <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
+                </div>
+                <h5 class="fw-semibold mx-3 text-start"><?php echo $row['jobTitle']; ?></h5>
                 <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded" style="background-color: <?php echo $boxColor; ?>; color: #000000;">
                   <div class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden" style="width: 40px; height: 40px;">
                     <img src="<?php echo $row['logoUrl']; ?>" alt="Logo" class="w-100 h-100 object-fit-cover">
@@ -99,6 +101,7 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
               </div>
             </a>
           </div>
+
 
         <?php } ?>
 
@@ -132,10 +135,10 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
   </div>
 
   <footer>
-      <div class="container-fluid p-5 text-center text-white bg-dark">
-        <p class="mb-0">© 2025 Job Circle | All Rights Reserved.</p>
-      </div>
-    </footer>
+    <div class="container-fluid p-5 text-center text-white bg-dark">
+      <p class="mb-0">© 2025 Job Circle | All Rights Reserved.</p>
+    </div>
+  </footer>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
