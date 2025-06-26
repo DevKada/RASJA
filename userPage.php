@@ -82,13 +82,15 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
           $boxColor = $colors[$index % count(value: $colors)];
           $index++;
         ?>
-          <div class="col-lg-4 col-md-6 col-12 mb-4">
-            <a id="<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
-              <div class="job-card p-3" style="background-color: #ffffff; border-radius: 12px;">
-                <div class="d-flex justify-content-start mb-2">
-                  <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
+          <div class="col-lg-4 col-md-6 col-12 mb-4 d-flex">
+            <a id="<?php echo $row['id']; ?>" class="text-decoration-none text-dark w-100">
+              <div class="job-card d-flex flex-column justify-content-between p-3 h-100" style="background-color: #ffffff; border-radius: 12px;">
+                <div>
+                  <div class="d-flex justify-content-start mb-2">
+                    <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
+                  </div>
+                  <h5 class="fw-semibold mx-3 text-start"><?php echo $row['jobTitle']; ?></h5>
                 </div>
-                <h5 class="fw-semibold mx-3 text-start"><?php echo $row['jobTitle']; ?></h5>
                 <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded" style="background-color: <?php echo $boxColor; ?>; color: #000000;">
                   <div class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden" style="width: 40px; height: 40px;">
                     <img src="<?php echo $row['logoUrl']; ?>" alt="Logo" class="w-100 h-100 object-fit-cover">
@@ -98,10 +100,10 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
                     <small class="text-black"><?php echo $row['location']; ?></small>
                   </div>
                 </div>
+
               </div>
             </a>
           </div>
-
 
         <?php } ?>
 
