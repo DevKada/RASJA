@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>LOGIN</title>
     <link rel="stylesheet" href="login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -15,7 +15,7 @@
             <div class="col">
                 <div class="card bg-transparent text-center rounded-4">
                     <form action="#">
-                        <h2 style="color: #E2E2E2;">Login Form</h2>
+                        <h2 style="color: #E2E2E2;">JOB CIRCLE</h2>
                         <div class="input-field">
                             <input type="text" required>
                             <label>Enter your email</label>
