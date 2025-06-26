@@ -1,21 +1,29 @@
 <?php
-// Database config
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "try";
+$db = "rasja";
 
-// Create connection
-$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+	die("Connection Failed. " . mysqli_connect_error());
+	echo "can't connect to database";
 }
 
-// Safe query function
-function executeQuery($query) {
-    global $conn; // ✅ Make sure $conn is visible inside this function
-    return $conn->query($query);
+function connectDB()
+{
+	$conn = new mysqli("localhost", "root", "", "rasja");
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	return $conn;
 }
-?>
+
+function executeQuery($query)
+{
+	$conn = connectDB();
+	$result = $conn->query($query);
+	$conn->close();
+	return $result;
+}

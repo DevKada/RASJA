@@ -46,9 +46,7 @@
     </div>
     <div>
       <a href="#" class="btn btn-outline-light btn-sm">Different page</a>
-      <a href="#" class="btn btn-outline-light btn-sm">Diff page </a>
-      <a href="#" class="btn btn-outline-light btn-sm">Next page</a>
-      <a href="#" class="btn btn-outline-light btn-sm">Next page</a>    
+z   
     </div>
   </nav>
 
