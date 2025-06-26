@@ -1,3 +1,19 @@
+<?php
+  include("db.php");
+
+  session_start();
+
+  $adminID = $_SESSION['adminID'];
+  $password = $_SESSION['password'];
+  $email = $_SESSION['email'];
+  $firstName = $_SESSION['firstName'];
+  $lastName = $_SESSION['lastName'];
+
+  if(!isset($email)){
+    header("Location: login.php");
+  }
+?>
+
 <!doctype html>
 <html lang="en">
 

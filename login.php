@@ -65,12 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label>Enter your password</label>
                         </div>
 
-                        <div class="forget">
-                            <label for="remember">
-                                <input type="checkbox" id="remember">
-                                <p class="mt-3">Remember me</p>
-                            </label>
-                            <a href="#">Forgot password?</a>
+                        <div class="my-2" style="color: #E2E2E2;">
+                            <input type="checkbox" id="show-password" onclick="togglePassword()">
+                            <label for="show-password">Show Password</label>
                         </div>
 
                         <div class="mt-5 text-center">
@@ -81,6 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 
