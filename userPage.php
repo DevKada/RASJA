@@ -56,7 +56,8 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
   <div class="container mt-4 text-center">
     <h2 class="py-3" style="color: #000000;">Find Your Dream Job Here ✦</h2>
     <form method="POST" class="search-bar d-flex justify-content-center mb-4 flex-wrap gap-2">
-      <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" class="form-control w-50 me-2 rounded-pill" placeholder="🔍 Job title or city">
+      <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>"
+        class="form-control w-50 me-2 rounded-pill" placeholder="🔍 Job title or city">
       <button class="btn btn-light rounded-pill px-4" style="background-color: black; color: white;">Search</button>
     </form>
 
@@ -77,17 +78,20 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
       <div class="row">
         <?php
         $index = 0;
-        while ($row = mysqli_fetch_assoc($result)) {
-          $boxColor = $colors[$index % count($colors)];
+        while ($row = mysqli_fetch_assoc(result: $result)) {
+          $boxColor = $colors[$index % count(value: $colors)];
           $index++;
-        ?>
+          ?>
           <div class="col-lg-4 col-md-6 col-12 mb-4">
             <a id=<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
               <div class="job-card p-3" style="background-color: #ffffff; border-radius: 12px;">
                 <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
                 <h5 class="fw-semibold mx-1 mt-2"><?php echo $row['jobTitle']; ?></h5>
-                <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded" style="background-color: <?php echo $boxColor; ?>; color: #000000;">
-                  <div class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden" style="width: 40px; height: 40px;">
+                <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded"
+                  style="background-color: <?php echo $boxColor; ?>; color: #000000;">
+                  <div
+                    class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden"
+                    style="width: 40px; height: 40px;">
                     <img src="<?php echo $row['logoUrl']; ?>" alt="Logo" class="w-100 h-100 object-fit-cover">
                   </div>
                   <div>
@@ -100,8 +104,8 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
           </div>
         <?php } ?>
 
-        <?php if (mysqli_num_rows($result) === 0) { ?>
-          <p class="text-center">No jobs found for "<strong><?php echo htmlspecialchars($search); ?></strong>"</p>
+        <?php if (mysqli_num_rows(result: $result) === 0) { ?>
+          <p class="text-center">No jobs found for "<strong><?php echo htmlspecialchars(string: $search); ?></strong>"</p>
         <?php } ?>
       </div>
     </div>
