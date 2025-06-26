@@ -8,20 +8,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <style>
-    .navbar-brand {}
-
-    .glass-navbar {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    }
-
-    body {
-      background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
-    }
-
     .job-card {
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -48,25 +34,45 @@
       border-radius: 50%;
       margin-right: 10px;
     }
+
+    .card.bg-light:hover {
+      transform:scale(1.03);
+      box-shadow:0 8px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor:default
+    }
+    .card.bg-light {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+     }
+    .job-card {
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+       cursor: pointer;
+    }
+
   </style>
 </head>
 
 <body class="bg-light">
 
-  <nav class="navbar sticky-top glass-navbar navbar-dark px-4">
-    <div class="container-fluid p-3">
-      <div class="d-flex align-items-center">
-        <div class="me-2 b-white rounded-circle" style="width: 20px; height: 20px;"></div>
-        <span class="navbar-brand mb-0 h1 text-black">JOB CIRCLE - Admin</span>
-      </div>
-      <div>
-        <a href="login.php" class="btn btn-outline-light btn-sm text-black">Log Out</a>
-      </div>
+  <nav class="navbar navbar-dark bg-dark px-4 p-3">
+    <div class="d-flex align-items-center">
+      <div class="me-2 bg-white rounded-circle" style="width: 40px; height: 40px;"></div>
+      <span class="navbar-brand mb-0 h1">JOB CIRCLE - Admin</span>
+    </div>
+    <div>
+      <a href="login.php" class="btn btn-outline-light btn-sm">Log Out</a>
     </div>
   </nav>
 
-  <div class="container py-4 shadow-sm d-flex justify-content-center">
-    <div class="row d-flex justify-content-center w-100">
+  <div class="bg-dark py-4 shadow-sm">
+    <div class="container d-flex justify-content-center">
       <div class="input-group w-75">
         <input type="text" id="searchBar" class="form-control rounded-start-pill" placeholder=" Search jobs...">
         <button class="btn btn-dark rounded-end-pill">Search</button>
@@ -169,7 +175,6 @@
           <th>Type</th>
           <th>Posted On</th>
           <th>Location</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -179,13 +184,6 @@
           <td>Full-Time</td>
           <td>June 21</td>
           <td>Quezon City</td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-sm btn-primary">View</button>
-              <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </div>
-          </td>
         </tr>
         <tr>
           <td>System Analyst</td>
@@ -193,21 +191,43 @@
           <td>Contract</td>
           <td>June 19</td>
           <td>Taguig</td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-sm btn-primary">View</button>
-              <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>
   </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchBar");
+    const table = document.getElementById("jobTable");
+    const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+    searchInput.addEventListener("input", function () {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      for (let row of rows) {
+        const cells = row.getElementsByTagName("td");
+        let matchFound = false;
+
+        for (let cell of cells) {
+          if (cell.textContent.toLowerCase().includes(searchTerm)) {
+            matchFound = true;
+            break;
+          }
+        }
+
+        row.style.display = matchFound ? "" : "none";
+      }
+    });
+  });
+</script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  
+  
+  </script>
 </body>
 
 </html>
