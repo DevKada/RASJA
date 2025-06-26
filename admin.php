@@ -8,6 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <style>
+    .navbar-brand {}
+
+    .glass-navbar {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+    body {
+      background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+    }
+
     .job-card {
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -39,19 +53,20 @@
 
 <body class="bg-light">
 
-  <nav class="navbar navbar-dark bg-dark px-4">
-    <div class="d-flex align-items-center">
-      <div class="me-2 bg-white rounded-circle" style="width: 20px; height: 20px;"></div>
-      <span class="navbar-brand mb-0 h1">JOB CIRCLE - Admin</span>
-    </div>
-    <div>
-      <a href="#" class="btn btn-outline-light btn-sm">Different page</a>
-z   
+  <nav class="navbar sticky-top glass-navbar navbar-dark px-4">
+    <div class="container-fluid p-3">
+      <div class="d-flex align-items-center">
+        <div class="me-2 b-white rounded-circle" style="width: 20px; height: 20px;"></div>
+        <span class="navbar-brand mb-0 h1 text-black">JOB CIRCLE - Admin</span>
+      </div>
+      <div>
+        <a href="login.php" class="btn btn-outline-light btn-sm text-black">Log Out</a>
+      </div>
     </div>
   </nav>
 
-  <div class="bg-white py-4 shadow-sm">
-    <div class="container d-flex justify-content-center">
+  <div class="container py-4 shadow-sm d-flex justify-content-center">
+    <div class="row d-flex justify-content-center w-100">
       <div class="input-group w-75">
         <input type="text" id="searchBar" class="form-control rounded-start-pill" placeholder=" Search jobs...">
         <button class="btn btn-dark rounded-end-pill">Search</button>

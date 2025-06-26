@@ -100,6 +100,7 @@ a:hover {
 }
 
 #aboutSection {
+    color: white;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -111,7 +112,7 @@ a:hover {
 #aboutSection .about-text {
     font-size: 1.2rem;
     line-height: 1.9;
-    color: #333;
+    color: #ffffff;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;

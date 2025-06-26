@@ -1,36 +1,37 @@
 <?php
-include("connect.php");
+include("db.php");
+
+session_start();
+session_destroy();
 session_start();
 
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn = new mysqli("localhost", "root", "", "jobCircle");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Use prepared statement to prevent SQL injection
-    $loginquery = "SELECT * FROM admins WHERE email = ?";
-    $stmt = $conn->prepare($loginquery);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $loginquery = "SELECT * FROM admins WHERE email = '$email' AND password = '$password'";
 
-    // Check if email exists
-    if ($result->num_rows === 1) {
-        $admin = $result->fetch_assoc();
+    $loginresult = $conn->query($loginquery);
 
-        // Check password (plaintext version)
-        if ($admin['password'] === $password) {
-            $_SESSION['UserID'] = $admin['UserID'] ?? $admin['id'] ?? null; // change as needed
-            $_SESSION['email'] = $admin['email'];
-            header("Location: admin.php");
-            exit();
-        } else {
-            echo "Incorrect password.";
-        }
+    if ($loginresult && $loginresult->num_rows > 0) {
+        $row = $loginresult->fetch_assoc();
+
+        $_SESSION['adminID'] = $row['adminID'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['password'] = $row['password'];
+        $_SESSION['firstName'] = $row['firstName'];
+        $_SESSION['lastName'] = $row['lastName'];
+
+        header("Location: admin.php");
+        exit(); // VERY IMPORTANT
     } else {
-        echo "No user found with that email.";
+        echo "NO USER FOUND";
     }
-
-    $stmt->close();
 }
 ?>
 
@@ -52,16 +53,18 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <div class="row">
             <div class="col">
                 <div class="card bg-transparent text-center rounded-4">
-                    <form action="#">
+                    <form method="post" action="login.php">
                         <h2 style="color: #E2E2E2;">JOB CIRCLE</h2>
-                        <div class="input-field">
-                            <input type="text" required>
+                        <div class="input-field my-3">
+                            <input type="text" id="email" name="email" required>
                             <label>Enter your email</label>
                         </div>
-                        <div class="input-field">
-                            <input type="password" required>
+
+                        <div class="input-field my-3">
+                            <input type="password" id="password" name="password" required>
                             <label>Enter your password</label>
                         </div>
+
                         <div class="forget">
                             <label for="remember">
                                 <input type="checkbox" id="remember">
@@ -69,9 +72,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                             </label>
                             <a href="#">Forgot password?</a>
                         </div>
-                        <button class="rounded-4" type="submit">Log In</button>
-                        <div class="register">
-                            <p>Don't have an account? <a href="#">Register</a></p>
+
+                        <div class="mt-5 text-center">
+                            <button class="rounded-4" type="submit">Log In</button>
                         </div>
                     </form>
                 </div>

@@ -41,13 +41,13 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
       </div>
       <ul class="nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white" href="#aboutSection">About</a>
+          <a class="nav-link text-black" href="#aboutSection">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="userPage.php">Jobs</a>
+          <a class="nav-link text-black" href="userPage.php">Jobs</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-light ms-2" href="admin.php">Admin</a>
+          <a class="btn btn-outline-black text-black ms-2" href="admin.php">Admin</a>
         </li>
       </ul>
     </div>
@@ -60,54 +60,54 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
       <button class="btn btn-light rounded-pill px-4" style="background-color: black; color: white;">Search</button>
     </form>
 
-      <div class="container py-5">
-        <div class="row">
-          <div class="col d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold">Recommended Jobs</h3>
-            <div>
-              <label for="sortSelect" class="me-2">Sort By</label>
-              <select id="sortSelect" class="form-select d-inline w-auto">
-                <option>Recently Added</option>
-                <option>Most Relevant</option>
-              </select>
-            </div>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold">Recommended Jobs</h3>
+          <div>
+            <label for="sortSelect" class="me-2">Sort By</label>
+            <select id="sortSelect" class="form-select d-inline w-auto">
+              <option>Recently Added</option>
+              <option>Most Relevant</option>
+            </select>
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <?php
-          $index = 0;
-          while ($row = mysqli_fetch_assoc($result)) {
-            $boxColor = $colors[$index % count($colors)];
-            $index++;
-          ?>
-            <div class="col-lg-4 col-md-6 col-12 mb-4">
-              <a id=<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
-                <div class="job-card p-3" style="background-color: #ffffff; border-radius: 12px;">
-                  <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
-                  <h5 class="fw-semibold mx-1 mt-2"><?php echo $row['jobTitle']; ?></h5>
-                  <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded" style="background-color: <?php echo $boxColor; ?>; color: #000000;">
-                    <div class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden" style="width: 40px; height: 40px;">
-                      <img src="<?php echo $row['logoUrl']; ?>" alt="Logo" class="w-100 h-100 object-fit-cover">
-                    </div>
-                    <div>
-                      <div class="fw-semibold text-black"><?php echo $row['name']; ?></div>
-                      <small class="text-black"><?php echo $row['location']; ?></small>
-                    </div>
+      <div class="row">
+        <?php
+        $index = 0;
+        while ($row = mysqli_fetch_assoc($result)) {
+          $boxColor = $colors[$index % count($colors)];
+          $index++;
+        ?>
+          <div class="col-lg-4 col-md-6 col-12 mb-4">
+            <a id=<?php echo $row['id']; ?>" class="text-decoration-none text-dark">
+              <div class="job-card p-3" style="background-color: #ffffff; border-radius: 12px;">
+                <span class="badge job-type bg-white text-dark"><?php echo $row['jobType']; ?></span>
+                <h5 class="fw-semibold mx-1 mt-2"><?php echo $row['jobTitle']; ?></h5>
+                <div class="company-box d-flex align-items-center mt-4 px-3 py-2 rounded" style="background-color: <?php echo $boxColor; ?>; color: #000000;">
+                  <div class="company-logo me-2 bg-black text-white rounded-circle d-flex justify-content-center align-items-center overflow-hidden" style="width: 40px; height: 40px;">
+                    <img src="<?php echo $row['logoUrl']; ?>" alt="Logo" class="w-100 h-100 object-fit-cover">
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-black"><?php echo $row['name']; ?></div>
+                    <small class="text-black"><?php echo $row['location']; ?></small>
                   </div>
                 </div>
-              </a>
-            </div>
-          <?php } ?>
+              </div>
+            </a>
+          </div>
+        <?php } ?>
 
-          <?php if (mysqli_num_rows($result) === 0) { ?>
-            <p class="text-center">No jobs found for "<strong><?php echo htmlspecialchars($search); ?></strong>"</p>
-          <?php } ?>
-        </div>
+        <?php if (mysqli_num_rows($result) === 0) { ?>
+          <p class="text-center">No jobs found for "<strong><?php echo htmlspecialchars($search); ?></strong>"</p>
+        <?php } ?>
       </div>
+    </div>
     </main>
 
-    <section id="aboutSection" class="py-5 bg-light d-flex align-items-center">
+    <section id="aboutSection" class="py-5 d-flex align-items-center">
       <div class="container text-center">
         <h2 class="fw-bold mb-5 display-6">About Job Circle</h2>
         <p class="about-text mb-3">
@@ -129,11 +129,12 @@ $colors = ['#ecffa4', '#a8f8f2', '#ffb7c5', '#b9f5a8'];
       </div>
     </section>
 
-    <footer class="footer mt-5 py-4 text-white">
-      <div class="container text-center">
-        <p class="mb-1">© 2025 Job Circle | All Rights Reserved.</p>
+    <footer class="footer mt-5 py-4 text-white bg-dark">
+      <div class="container-fluid text-center">
+        <p class="mt-1">© 2025 Job Circle | All Rights Reserved.</p>
       </div>
     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
