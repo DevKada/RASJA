@@ -1,3 +1,41 @@
+<?php
+include("connect.php");
+session_start();
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Use prepared statement to prevent SQL injection
+    $loginquery = "SELECT * FROM admins WHERE email = ?";
+    $stmt = $conn->prepare($loginquery);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if email exists
+    if ($result->num_rows === 1) {
+        $admin = $result->fetch_assoc();
+
+        // Check password (plaintext version)
+        if ($admin['password'] === $password) {
+            $_SESSION['UserID'] = $admin['UserID'] ?? $admin['id'] ?? null; // change as needed
+            $_SESSION['email'] = $admin['email'];
+            header("Location: admin.php");
+            exit();
+        } else {
+            echo "Incorrect password.";
+        }
+    } else {
+        echo "No user found with that email.";
+    }
+
+    $stmt->close();
+}
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
