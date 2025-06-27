@@ -2,11 +2,10 @@
 include("db.php");
 
 session_start();
-session_destroy();
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = new mysqli("localhost", "root", "", "jobCircle");
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -20,20 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($loginresult && $loginresult->num_rows > 0) {
         $row = $loginresult->fetch_assoc();
-
+        $_SESSION['admin_logged_in'] = true;
         $_SESSION['adminID'] = $row['adminID'];
         $_SESSION['email'] = $row['email'];
-        $_SESSION['password'] = $row['password'];
         $_SESSION['firstName'] = $row['firstName'];
         $_SESSION['lastName'] = $row['lastName'];
 
         header("Location: admin.php");
-        exit(); // VERY IMPORTANT
+        exit();
     } else {
         echo "NO USER FOUND";
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
+
 
 
 
@@ -71,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
                         <div class="mt-5 text-center">
-                            <button class="rounded-4" type="submit">Log In</button>
+                            <button class="rounded-5" type="submit">Log In</button>
                         </div>
                     </form>
                 </div>
